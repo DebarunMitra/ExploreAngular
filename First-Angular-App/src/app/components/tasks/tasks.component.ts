@@ -20,6 +20,16 @@ export class TasksComponent {
   }
 
   ngOnInit(): void {
-    this.taskService.getTasks().subscribe((tasks) => this.tasks = tasks);
+    // this.taskService.getTasks().subscribe((tasks) => this.tasks = tasks);
+    
+    this.taskService.getJsonData().subscribe({
+        next: data => {
+          console.log('JSON Data:', data)
+          this.tasks = data
+        },
+        error: error => {
+          console.error('Error fetching JSON data:', error)
+        }
+    });
   }
 }
